@@ -1,4 +1,4 @@
-var express = require("express"),  
+   express = require("express"),  
     app = express(),
     bodyParser  = require("body-parser"),
     methodOverride = require("method-override");
@@ -14,8 +14,21 @@ router.get('/', function(req, res) {
    res.send("Hello World!");
 });
 
+require('./app/config/config.js');
+
 app.use(router);
 
-app.listen(3000, function() {  
-  console.log("Node server running on http://localhost:3000");
+// REGISTER OUR ROUTES -------------------------------
+require('./app/routes/userData.js');
+
+
+mongoose.connect(CONFIG.mongoServices, function(err, res) {  
+  if(err) {
+    console.log('ERROR: connecting to Database. ' + err);
+  }
+  app.listen(3000, function() {
+    console.log("Node server running on http://localhost:3000");
+    //userData.drop();
+  });
 });
+
