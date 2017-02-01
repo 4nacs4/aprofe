@@ -1,28 +1,31 @@
-   express = require("express"),  
-    app = express(),
-    bodyParser  = require("body-parser"),
-    methodOverride = require("method-override");
-    mongoose = require('mongoose');
+express = require("express"),  
+app = express(),
+bodyParser  = require("body-parser"),
+methodOverride = require("method-override"),
+mongoose = require('mongoose'),
+cors = require('cors'),
+config = require('./app/config/config');
 
 app.use(bodyParser.urlencoded({ extended: false }));  
 app.use(bodyParser.json());  
 app.use(methodOverride());
+app.use(cors());  
 
-var router = express.Router();
 
-router.get('/', function(req, res) {  
-   res.send("Hello World!");
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With,     Content-Type, Accept");
+  next();
 });
 
-require('./app/config/config.js');
 
-app.use(router);
 
 // REGISTER OUR ROUTES -------------------------------
-require('./app/routes/userData.js');
+require('./app/routes/user.js');
+require('./app/routes/auth.js');
 
 
-mongoose.connect(CONFIG.mongoServices, function(err, res) {  
+mongoose.connect(config.mongoServices, function(err, res) {  
   if(err) {
     console.log('ERROR: connecting to Database. ' + err);
   }
