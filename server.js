@@ -21,8 +21,9 @@ app.use(function(req, res, next) {
 
 
 // REGISTER OUR ROUTES -------------------------------
-require('./app/routes/user.js');
-require('./app/routes/auth.js');
+
+require('./app/routes/auth');
+require('./app/routes/userProfile');
 
 
 mongoose.connect(config.mongoServices, function(err, res) {  

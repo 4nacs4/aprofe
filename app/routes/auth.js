@@ -7,6 +7,4 @@ authUser.route('/signin')
 
 authUser.post('/signup',auth.signUp);
 
-authUser.get('/profile',middleware.ensureAuthenticated,auth.signUp);
-
 app.use('/auth', authUser);  
