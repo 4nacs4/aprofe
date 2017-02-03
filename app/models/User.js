@@ -7,11 +7,13 @@ var mongoose = require('mongoose'),
 var User = new Schema({  
   email: { type: String, unique : true, required : true, dropDups: true  },
   ci: { type: String, unique : true, required : true, dropDups: true },
+  tipoCedula: { type: String, required : true},
+  cedula: { type: String, unique : true, required : true, dropDups: true },
   password: { type: String, required: true},
   firstName: { type: String, required: true},
   lastName: { type: String, required: true},
   avatar: { type: String, required: true},
-  status: { type: String, required: true},
+  status: { type: String},
   displayName: { type: String, required: true}
 });
 
