@@ -11,6 +11,7 @@
  "cors":"^2.8.1",
  "moment":"^2.4.0",
  "jwt-simple":"^0.5.1",
- "bcrypt":"*"
+ "bcrypt":"*",
+ "underscore":"^1.8.3"
  }
 }

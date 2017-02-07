@@ -1,9 +1,13 @@
-var User = require('../models/User');
-var userData = require('../controllers/User');
-var userdata = express.Router();
+var middleware = require('../services/middleware');
+var profile = require('../controllers/userProfile');
+var membership = require('../controllers/membership');
+var User = express.Router();
 
-userdata.route('/userdata')  
-  .get(userData.findAllUsers)
-  .post(userData.addUser);
+//Profile Routes
+User.get('/profile/:_id',middleware.ensureAuthenticated, profile.findUserProfile);
+User.post('/profile/update',middleware.ensureAuthenticated, profile.updateUserProfile);
 
-app.use('/api', userdata);  
+//Membership Routes
+User.get('/membership/create',middleware.ensureAuthenticated, membership.createMembership);
+
+app.use('/api', User);  

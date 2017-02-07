@@ -20,7 +20,7 @@ exports.signUp = function(req, res) {
 };
 
 exports.signIn = function(req, res) {  
- 	User.findOne({ ci: req.body.ci}, function(err, user) {
+ 	User.findOne({ fullId: req.body.id}, function(err, user) {
         if (err) res.status(500).jsonp(err);
         if(user){
 	        user.comparePassword(req.body.password, function(err, isMatch) {

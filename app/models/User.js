@@ -5,10 +5,9 @@ var mongoose = require('mongoose'),
     SALT_WORK_FACTOR= 10;
 
 var User = new Schema({  
+  id: { type: String, unique : true, required : true, dropDups: true },
   email: { type: String, unique : true, required : true, dropDups: true  },
-  ci: { type: String, unique : true, required : true, dropDups: true },
-  tipoCedula: { type: String, required : true},
-  cedula: { type: String, unique : true, required : true, dropDups: true },
+  personType: { type: String, required : true},
   password: { type: String, required: true},
   firstName: { type: String, required: true},
   lastName: { type: String, required: true},
